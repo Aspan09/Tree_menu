@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        .active > a {
+            font-weight: bold;
+            color: #ff5733;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        {% for node in menu_tree %}
+            <li class="{% if node.active %}active{% endif %}">
+                <a href="{{ node.item.get_url }}">{{ node.item.name }}</a>
+                {% if node.children %}
+                    <ul>
+                        {% include 'menu.html' with menu_tree=node.children %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

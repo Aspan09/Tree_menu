@@ -1,0 +1,3 @@
+/.env
+/db.sqlite3
+/apps/tree_menu/migrations/
